@@ -1,6 +1,6 @@
 # Welcome to My Portfolio!
 
-live at: shriyadxt.github.io
+live at: https://shriyadxt.github.io
 
 ## About Me
 I'm passionate about harnessing the power of data analytics and data science to derive insights and drive decision-making. With a background in data analytics, business analysis, and data science, I have experience leading projects that optimize data processes, enhance insights, and improve operational efficiencies.
