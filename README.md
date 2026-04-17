@@ -1,24 +1,31 @@
-# Welcome to My Portfolio!
+# Shriya Dikshith — Portfolio
 
-live at: https://shriyadxt.github.io
+🔗 Live at: [shriyadxt.github.io](https://shriyadxt.github.io)
 
-## About Me
-I'm passionate about harnessing the power of data analytics and data science to derive insights and drive decision-making. With a background in data analytics, business analysis, and data science, I have experience leading projects that optimize data processes, enhance insights, and improve operational efficiencies.
+## About
 
-## Skills
-- Proficient in Python, SQL, Tableau, and Snowflake database
-- Experience with AWS, Databricks, and Tableau Desktop Specialist certification
-- Skilled in web design and development, emphasizing clean and service-oriented designs
+Data Analyst at Amazon with 4+ years of experience across data science, analytics engineering, and data engineering. Currently building automation tools, analytics pipelines, and AI-powered systems for carrier performance management in Amazon's transportation network.
 
-## Experience
-- Data Analyst, Business Analyst, Artificial Intelligence Developer, Data Scientist, Data Engineer
-- Worked at Mimecast, Cyient Pvt Ltd, HP Inc., and Northeastern University
+Previously at Mimecast, Northeastern University, and HP Inc.
 
-## Current Courses in Progress
-- Master of Science in Information Systems at Northeastern University (Expected Completion: December 2023)
+## Tech Stack
 
-## Hobbies
-In my free time, I enjoy painting, cooking, and following sports. These activities provide me with relaxation and creative expression, helping me stay refreshed and inspired.
+**Languages:** Python, SQL, R, Java, JavaScript, TypeScript, HTML/CSS
+**Data & Analytics:** Tableau, Power BI, Alteryx, dbt, Excel
+**Cloud & DevOps:** AWS (Lambda, Redshift), Databricks, GIT, CI/CD, Docker
+**Databases:** Snowflake, Oracle, PostgreSQL, MongoDB, BigQuery, Vertica
+**ML & Libraries:** Scikit-learn, TensorFlow, PyTorch, Pandas, NumPy, NLP
 
-## Let's Connect!
-I'm excited about the possibilities of data analytics and would love to discuss how I can contribute to your projects. Feel free to reach out and connect!
+## Featured Projects
+
+- **Amazon Reviews Sentiment Analysis** — NLP-based analysis of millions of consumer reviews
+- **Device Failure Prediction** — ML pipeline for predictive maintenance
+- **ML for Hospital Efficiency** — Patient length-of-stay prediction
+- **Customer Complaints Management** — Oracle database system with PL/SQL
+- **Movie Storybook** — Interactive Python storytelling application
+
+## Contact
+
+- 📧 shriya5dxt@gmail.com
+- 💼 [LinkedIn](https://www.linkedin.com/in/shriya-dikshith/)
+- 🐙 [GitHub](https://github.com/shriyadxt)
