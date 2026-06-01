@@ -27,6 +27,7 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="assets/css/modern-style.css">
+    <link rel="stylesheet" href="assets/css/simulations.css">
 </head>
 
 <body>
@@ -54,6 +55,7 @@
                     <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
                     <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
                     <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
+                    <li class="nav-item"><a href="#simulations" class="nav-link">Case Studies</a></li>
                     <li class="nav-item"><a href="#portfolio" class="nav-link">Projects</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
@@ -325,7 +327,7 @@
                             </div>
                         </div>
                         <ul class="timeline-details">
-                            <li>Built COACH (Carrier Optimization & Automated Coaching Hub) — an AI-powered system
+                            <li>Built COACH (Carrier Optimization & Automated Coaching Hub), an automated system
                                 to automate carrier performance management across 6,400+ carriers in the US prepaid
                                 network, replacing manual processes that covered only 3.9% of carriers weekly.</li>
                             <li>Developed automated FIST (First Inbound Shipment Tracking) flash reports and carrier
@@ -431,8 +433,97 @@
             </div>
         </div>
     </section>
-    ""
-    <!-- 
+    <!-- Simulations Section -->
+    <section class="section simulations" id="simulations">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">What I've built</span>
+                <h2 class="section-title">Interactive <span class="gradient-text">Case Studies</span></h2>
+                <div class="section-line"></div>
+                <p style="color:var(--text-secondary);max-width:620px;margin:1rem auto 0;font-size:0.9rem;">
+                    Click any card to walk through the problem, architecture, and results of systems I built and shipped at Amazon.
+                </p>
+            </div>
+            <div class="simulations-grid">
+                <div class="sim-card" data-sim="coach" data-aos="fade-up" data-aos-delay="100">
+                    <div class="sim-card-icon"><i class="fas fa-truck"></i></div>
+                    <h3>Carrier Performance Automation</h3>
+                    <p>Built an automated carrier performance monitoring system that evaluates 6,400+ carriers against business-defined thresholds, classifies them into operational tiers, and generates coaching recommendations. Replaced a manual review process that covered only 3.9% of carriers each week.</p>
+                    <div class="sim-card-tags">
+                        <span>Python</span><span>SQL</span><span>Automation</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="sim-card" data-sim="reporting" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sim-card-icon"><i class="fas fa-chart-bar"></i></div>
+                    <h3>Executive Reporting Automation</h3>
+                    <p>Developed a Python and SQL reporting pipeline that retrieves operational KPIs from Redshift, generates HTML dashboards with automated trend analysis, and distributes weekly reports to leadership stakeholders. Reduced manual reporting effort by approximately 6 hours per week.</p>
+                    <div class="sim-card-tags">
+                        <span>Python</span><span>SQL</span><span>HTML/CSS</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="sim-card" data-sim="electron" data-aos="fade-up" data-aos-delay="300">
+                    <div class="sim-card-icon"><i class="fas fa-desktop"></i></div>
+                    <h3>Carrier Operations Desktop Tool</h3>
+                    <p>Developed an Electron and React desktop application that combines XML processing, data extraction, Excel conversion, and email generation into a single workflow. Simplified carrier operations and eliminated repetitive manual processing tasks.</p>
+                    <div class="sim-card-tags">
+                        <span>Electron</span><span>React</span><span>Python</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="sim-card" data-sim="productivity" data-aos="fade-up" data-aos-delay="100">
+                    <div class="sim-card-icon"><i class="fas fa-users-cog"></i></div>
+                    <h3>Productivity Scorecard System</h3>
+                    <p>Built an automated ETL workflow that ingests time-tracking data from the Clockify API, calculates productivity metrics, stores results in Redshift, and generates weekly performance scorecards for managers. Improved reporting consistency and eliminated manual scorecard creation.</p>
+                    <div class="sim-card-tags">
+                        <span>Python</span><span>AWS Redshift</span><span>ETL</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="sim-card" data-sim="lambda" data-aos="fade-up" data-aos-delay="200">
+                    <div class="sim-card-icon"><i class="fas fa-cloud"></i></div>
+                    <h3>Manifest Accuracy Analytics</h3>
+                    <p>Developed a serverless analytics solution using AWS Lambda, Python, and Redshift to calculate shipment-level manifest accuracy metrics and publish interactive dashboards for operational teams. Automated recurring analysis that was previously done ad-hoc.</p>
+                    <div class="sim-card-tags">
+                        <span>AWS Lambda</span><span>Redshift</span><span>Python</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="sim-card" data-sim="compliance" data-aos="fade-up" data-aos-delay="300">
+                    <div class="sim-card-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Carrier Compliance Verification</h3>
+                    <p>Automated carrier onboarding and compliance checks by integrating external USDOT and SCAC validation sources. Generated approval recommendations and exception reports, reducing manual verification effort from 3 days per batch to minutes.</p>
+                    <div class="sim-card-tags">
+                        <span>Python</span><span>API Integration</span><span>Automation</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+                <div class="sim-card" data-sim="sql" data-aos="fade-up" data-aos-delay="100">
+                    <div class="sim-card-icon"><i class="fas fa-database"></i></div>
+                    <h3>Business Intelligence & KPI Framework</h3>
+                    <p>Authored and maintained 30+ production SQL queries used for Weekly Business Reviews, standardizing KPI calculations (window functions, CTEs, multi-table joins) across U.S. and Canadian carrier operations. Enabled consistent performance reporting and reduced report preparation time.</p>
+                    <div class="sim-card-tags">
+                        <span>SQL</span><span>Redshift</span><span>Data Modeling</span>
+                    </div>
+                    <span class="sim-card-btn">View Case Study <i class="fas fa-arrow-right"></i></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulation Modal -->
+    <div class="sim-modal-overlay" id="sim-modal-overlay">
+        <div class="sim-modal">
+            <div class="sim-modal-header">
+                <h3>Simulation</h3>
+                <button class="sim-modal-close"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="sim-modal-body"></div>
+        </div>
+    </div>
+
+    <!--
 Portfolio Section -->
     <section class="section portfolio" id="portfolio">
         <div class="container">
@@ -669,6 +760,7 @@ Portfolio Section -->
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="assets/js/modern-app.js"></script>
+    <script src="assets/js/simulations.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,863 @@
+/* ============================================
+   SIMULATIONS SECTION - Interactive Project Demos
+   ============================================ */
+
+/* --- Section Layout --- */
+.simulations-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.sim-card {
+    background: var(--card-bg, rgba(30, 30, 50, 0.6));
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: 16px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sim-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-primary, #6366f1), var(--accent-secondary, #8b5cf6));
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.sim-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-primary, #6366f1);
+    box-shadow: 0 12px 40px rgba(99, 102, 241, 0.15);
+}
+
+.sim-card:hover::before {
+    transform: scaleX(1);
+}
+
+.sim-card-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent-primary, #6366f1), var(--accent-secondary, #8b5cf6));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: #fff;
+    margin-bottom: 1rem;
+}
+
+.sim-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    margin-bottom: 0.5rem;
+}
+
+.sim-card p {
+    font-size: 0.85rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.sim-card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-bottom: 1rem;
+}
+
+.sim-card-tags span {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    background: rgba(99, 102, 241, 0.1);
+    color: var(--accent-primary, #6366f1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.sim-card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent-primary, #6366f1);
+    text-decoration: none;
+    transition: gap 0.3s ease;
+}
+
+.sim-card:hover .sim-card-btn {
+    gap: 0.8rem;
+}
+
+/* --- Modal --- */
+.sim-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(8px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+
+.sim-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.sim-modal {
+    background: var(--card-bg, #1a1a2e);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    max-height: 85vh;
+    overflow-y: auto;
+    transform: scale(0.9) translateY(20px);
+    transition: transform 0.3s ease;
+    position: relative;
+}
+
+.sim-modal-overlay.active .sim-modal {
+    transform: scale(1) translateY(0);
+}
+
+.sim-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    position: sticky;
+    top: 0;
+    background: var(--card-bg, #1a1a2e);
+    z-index: 2;
+    border-radius: 20px 20px 0 0;
+}
+
+.sim-modal-header h3 {
+    font-size: 1.2rem;
+    color: var(--text-primary, #fff);
+    font-weight: 600;
+}
+
+.sim-modal-close {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    background: transparent;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.sim-modal-close:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #ef4444;
+    color: #ef4444;
+}
+
+.sim-modal-body {
+    padding: 2rem;
+}
+
+/* --- Dashboard Common Styles --- */
+.sim-dashboard {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.sim-metric-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+}
+
+.sim-metric-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.06));
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.sim-metric-card:hover {
+    background: rgba(99, 102, 241, 0.05);
+    border-color: rgba(99, 102, 241, 0.2);
+}
+
+.sim-metric-card .metric-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--accent-primary, #6366f1);
+    display: block;
+    font-family: 'Space Grotesk', monospace;
+}
+
+.sim-metric-card .metric-label {
+    font-size: 0.75rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-top: 0.3rem;
+    display: block;
+}
+
+.sim-metric-card .metric-change {
+    font-size: 0.7rem;
+    margin-top: 0.3rem;
+    display: inline-block;
+    padding: 0.15rem 0.5rem;
+    border-radius: 10px;
+}
+
+.metric-change.positive {
+    color: #10b981;
+    background: rgba(16, 185, 129, 0.1);
+}
+
+.metric-change.negative {
+    color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+}
+
+/* --- Bar Chart --- */
+.sim-chart {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.06));
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.sim-chart-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    margin-bottom: 1rem;
+}
+
+.sim-bar-chart {
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    height: 150px;
+    padding-top: 1rem;
+}
+
+.sim-bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    justify-content: flex-end;
+}
+
+.sim-bar {
+    width: 100%;
+    max-width: 40px;
+    border-radius: 6px 6px 0 0;
+    background: linear-gradient(180deg, var(--accent-primary, #6366f1), var(--accent-secondary, #8b5cf6));
+    transition: height 1s cubic-bezier(0.4, 0, 0.2, 1);
+    height: 0;
+    position: relative;
+}
+
+.sim-bar.animated {
+    height: var(--bar-height, 50%);
+}
+
+.sim-bar-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.sim-bar-value {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.65rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    opacity: 0;
+    transition: opacity 0.3s ease 0.8s;
+}
+
+.sim-bar.animated .sim-bar-value {
+    opacity: 1;
+}
+
+/* --- Line/Sparkline Chart --- */
+.sim-sparkline-container {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.06));
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.sim-sparkline {
+    width: 100%;
+    height: 80px;
+}
+
+.sim-sparkline path {
+    fill: none;
+    stroke: var(--accent-primary, #6366f1);
+    stroke-width: 2;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    transition: stroke-dashoffset 2s ease;
+}
+
+.sim-sparkline path.animated {
+    stroke-dashoffset: 0;
+}
+
+.sim-sparkline .area {
+    fill: url(#sparkGradient);
+    stroke: none;
+    opacity: 0;
+    transition: opacity 1s ease 1s;
+}
+
+.sim-sparkline .area.animated {
+    opacity: 0.3;
+}
+
+/* --- Donut Chart --- */
+.sim-donut-container {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.06));
+    border-radius: 12px;
+    padding: 1.5rem;
+}
+
+.sim-donut {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+}
+
+.sim-donut circle {
+    fill: none;
+    stroke-width: 8;
+    transform: rotate(-90deg);
+    transform-origin: center;
+}
+
+.sim-donut .donut-bg {
+    stroke: rgba(255, 255, 255, 0.06);
+}
+
+.sim-donut .donut-fill {
+    stroke: var(--accent-primary, #6366f1);
+    stroke-dasharray: var(--circumference, 251);
+    stroke-dashoffset: var(--circumference, 251);
+    transition: stroke-dashoffset 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+    stroke-linecap: round;
+}
+
+.sim-donut .donut-fill.animated {
+    stroke-dashoffset: var(--target-offset, 0);
+}
+
+.sim-donut-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary, #fff);
+}
+
+.sim-donut-info h4 {
+    font-size: 0.9rem;
+    color: var(--text-primary, #fff);
+    margin-bottom: 0.3rem;
+}
+
+.sim-donut-info p {
+    font-size: 0.75rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    line-height: 1.4;
+}
+
+/* --- Alert Feed --- */
+.sim-feed {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.06));
+    border-radius: 12px;
+    padding: 1.2rem;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.sim-feed-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary, #fff);
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sim-feed-title .pulse-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #10b981;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.sim-feed-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.7rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    opacity: 0;
+    transform: translateX(-10px);
+    animation: feedSlideIn 0.4s ease forwards;
+}
+
+.sim-feed-item:last-child {
+    border-bottom: none;
+}
+
+@keyframes feedSlideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.sim-feed-item .feed-icon {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    flex-shrink: 0;
+}
+
+.feed-icon.warning {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.feed-icon.success {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.feed-icon.info {
+    background: rgba(99, 102, 241, 0.15);
+    color: #6366f1;
+}
+
+.feed-icon.danger {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+.sim-feed-item .feed-text {
+    font-size: 0.72rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.6));
+    line-height: 1.4;
+}
+
+.sim-feed-item .feed-time {
+    font-size: 0.6rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.3));
+    margin-top: 0.2rem;
+    display: block;
+}
+
+/* --- Progress Pipeline --- */
+.sim-pipeline {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 1rem 0;
+    overflow-x: auto;
+}
+
+.sim-pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 80px;
+    position: relative;
+}
+
+.sim-pipeline-step .step-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 2px solid var(--border-color, rgba(255, 255, 255, 0.1));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.75rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.4));
+    transition: all 0.5s ease;
+    background: var(--card-bg, #1a1a2e);
+    z-index: 1;
+}
+
+.sim-pipeline-step.active .step-circle {
+    border-color: var(--accent-primary, #6366f1);
+    color: #fff;
+    background: var(--accent-primary, #6366f1);
+    box-shadow: 0 0 15px rgba(99, 102, 241, 0.4);
+}
+
+.sim-pipeline-step.completed .step-circle {
+    border-color: #10b981;
+    color: #fff;
+    background: #10b981;
+}
+
+.sim-pipeline-step .step-label {
+    font-size: 0.65rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.4));
+    text-align: center;
+    transition: color 0.3s ease;
+}
+
+.sim-pipeline-step.active .step-label,
+.sim-pipeline-step.completed .step-label {
+    color: var(--text-primary, #fff);
+}
+
+.sim-pipeline-connector {
+    flex: 1;
+    height: 2px;
+    background: var(--border-color, rgba(255, 255, 255, 0.1));
+    min-width: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.sim-pipeline-connector .connector-fill {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background: linear-gradient(90deg, #10b981, var(--accent-primary, #6366f1));
+    transition: width 0.8s ease;
+}
+
+.sim-pipeline-connector.filled .connector-fill {
+    width: 100%;
+}
+
+/* --- Table --- */
+.sim-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.75rem;
+}
+
+.sim-table th {
+    text-align: left;
+    padding: 0.7rem 0.8rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    font-weight: 500;
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 0.65rem;
+}
+
+.sim-table td {
+    padding: 0.7rem 0.8rem;
+    color: var(--text-primary, #fff);
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.04));
+}
+
+.sim-table tr:hover td {
+    background: rgba(99, 102, 241, 0.03);
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 10px;
+    font-size: 0.65rem;
+    font-weight: 500;
+}
+
+.status-badge.green {
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+}
+
+.status-badge.yellow {
+    background: rgba(245, 158, 11, 0.15);
+    color: #f59e0b;
+}
+
+.status-badge.red {
+    background: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+}
+
+/* --- App Window Mockup --- */
+.sim-app-window {
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--border-color, rgba(255, 255, 255, 0.08));
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.sim-app-titlebar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-bottom: 1px solid var(--border-color, rgba(255, 255, 255, 0.06));
+}
+
+.sim-app-titlebar .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.sim-app-titlebar .dot.red { background: #ef4444; }
+.sim-app-titlebar .dot.yellow { background: #f59e0b; }
+.sim-app-titlebar .dot.green { background: #10b981; }
+
+.sim-app-titlebar span {
+    font-size: 0.7rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.4));
+    margin-left: auto;
+}
+
+.sim-app-content {
+    padding: 1.5rem;
+}
+
+/* --- Progress Bar --- */
+.sim-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 3px;
+    overflow: hidden;
+    margin: 0.5rem 0;
+}
+
+.sim-progress-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--accent-primary, #6366f1), var(--accent-secondary, #8b5cf6));
+    width: 0;
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sim-progress-fill.animated {
+    width: var(--progress, 100%);
+}
+
+/* --- Tier Cards --- */
+.sim-tier-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+.sim-tier-card {
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+    border: 1px solid;
+}
+
+.sim-tier-card.tier-green {
+    background: rgba(16, 185, 129, 0.05);
+    border-color: rgba(16, 185, 129, 0.2);
+}
+
+.sim-tier-card.tier-yellow {
+    background: rgba(245, 158, 11, 0.05);
+    border-color: rgba(245, 158, 11, 0.2);
+}
+
+.sim-tier-card.tier-red {
+    background: rgba(239, 68, 68, 0.05);
+    border-color: rgba(239, 68, 68, 0.2);
+}
+
+.sim-tier-card .tier-count {
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: 'Space Grotesk', monospace;
+}
+
+.tier-green .tier-count { color: #10b981; }
+.tier-yellow .tier-count { color: #f59e0b; }
+.tier-red .tier-count { color: #ef4444; }
+
+.sim-tier-card .tier-label {
+    font-size: 0.7rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.5));
+    margin-top: 0.3rem;
+    display: block;
+}
+
+/* --- Two Column Layout --- */
+.sim-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+@media (max-width: 768px) {
+    .sim-two-col {
+        grid-template-columns: 1fr;
+    }
+    .sim-tier-row {
+        grid-template-columns: 1fr;
+    }
+    .sim-modal {
+        max-height: 90vh;
+        border-radius: 12px;
+    }
+    .sim-modal-body {
+        padding: 1rem;
+    }
+    .sim-metric-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* --- Scrollbar for modal --- */
+.sim-modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.sim-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sim-modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+}
+
+.sim-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- Animated counter in modals --- */
+.sim-counter {
+    transition: all 0.1s ease;
+}
+
+/* --- Problem Box --- */
+.sim-problem-box {
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.15);
+    border-left: 3px solid #ef4444;
+    border-radius: 8px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.sim-problem-box p {
+    font-size: 0.85rem;
+    color: var(--text-primary, #fff);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.sim-problem-box strong {
+    color: #ef4444;
+}
+
+/* --- Section Labels --- */
+.sim-section-label {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-primary, #6366f1);
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.sim-section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(99, 102, 241, 0.3), transparent);
+}
+
+/* --- Tech Stack Tags --- */
+.sim-tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.sim-tech-stack span {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 20px;
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--accent-primary, #6366f1);
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    font-weight: 500;
+}
+
+/* --- Simulation note --- */
+.sim-note {
+    font-size: 0.65rem;
+    color: var(--text-secondary, rgba(255, 255, 255, 0.3));
+    text-align: center;
+    margin-top: 1.5rem;
+    font-style: italic;
+}
