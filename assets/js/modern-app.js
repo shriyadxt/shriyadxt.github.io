@@ -99,20 +99,46 @@ document.addEventListener('DOMContentLoaded', () => {
     // ---- Mobile Nav ----
     const navToggle = document.getElementById('nav-toggle');
     const navMenu = document.getElementById('nav-menu');
-    navToggle.addEventListener('click', () => {
-        navToggle.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    const navBackdrop = document.getElementById('nav-backdrop');
+
+    const openMenu = () => {
+        navToggle.classList.add('active');
+        navMenu.classList.add('active');
+        if (navBackdrop) navBackdrop.classList.add('active');
+        document.body.classList.add('nav-open');
+        navToggle.setAttribute('aria-expanded', 'true');
+    };
+    const closeMenu = () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        if (navBackdrop) navBackdrop.classList.remove('active');
+        document.body.classList.remove('nav-open');
+        navToggle.setAttribute('aria-expanded', 'false');
+    };
+    const toggleMenu = () => {
+        navMenu.classList.contains('active') ? closeMenu() : openMenu();
+    };
+
+    navToggle.addEventListener('click', toggleMenu);
+    if (navBackdrop) navBackdrop.addEventListener('click', closeMenu);
+
+    // Tap a nav link -> close the menu (it then jumps to the section)
     document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            navToggle.classList.remove('active');
-            navMenu.classList.remove('active');
-        });
+        link.addEventListener('click', closeMenu);
+    });
+
+    // Esc closes the menu; resizing back to desktop resets it
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+    });
+    window.addEventListener('resize', () => {
+        if (window.innerWidth > 992) closeMenu();
     });
 
     // ---- Active Nav Link on Scroll ----
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-link');
+    const sideDots = document.querySelectorAll('.side-dot');
     window.addEventListener('scroll', () => {
         let current = '';
         sections.forEach(section => {
@@ -123,7 +149,37 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.remove('active');
             if (link.getAttribute('href') === '#' + current) link.classList.add('active');
         });
+        sideDots.forEach(dot => {
+            dot.classList.remove('active');
+            if (dot.getAttribute('href') === '#' + current) dot.classList.add('active');
+        });
     });
+
+    // ---- Gallery Lightbox ----
+    const lightbox = document.getElementById('lightbox');
+    if (lightbox) {
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lightboxClose = document.getElementById('lightbox-close');
+        const closeLightbox = () => {
+            lightbox.classList.remove('open');
+            lightbox.setAttribute('aria-hidden', 'true');
+        };
+        document.querySelectorAll('.gallery-item img').forEach(img => {
+            img.addEventListener('click', () => {
+                lightboxImg.src = img.src;
+                lightboxImg.alt = img.alt;
+                lightbox.classList.add('open');
+                lightbox.setAttribute('aria-hidden', 'false');
+            });
+        });
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    }
 
     // ---- Theme Toggle ----
     const themeToggle = document.getElementById('theme-toggle');

@@ -57,6 +57,7 @@
                     <li class="nav-item"><a href="#experience" class="nav-link">Experience</a></li>
                     <li class="nav-item"><a href="#simulations" class="nav-link">Case Studies</a></li>
                     <li class="nav-item"><a href="#portfolio" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#hobbies" class="nav-link">Beyond Work</a></li>
                     <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
                 </ul>
             </div>
@@ -72,6 +73,23 @@
             </button>
         </div>
     </nav>
+
+    <!-- Backdrop for mobile slide-in menu -->
+    <div class="nav-backdrop" id="nav-backdrop"></div>
+
+    <!-- Side Dot Navigation (quick jump) -->
+    <aside class="side-nav" id="side-nav" aria-label="Section navigation">
+        <ul>
+            <li><a href="#home" class="side-dot active" data-label="Home"><span></span></a></li>
+            <li><a href="#about" class="side-dot" data-label="About"><span></span></a></li>
+            <li><a href="#skills" class="side-dot" data-label="Skills"><span></span></a></li>
+            <li><a href="#experience" class="side-dot" data-label="Experience"><span></span></a></li>
+            <li><a href="#simulations" class="side-dot" data-label="Case Studies"><span></span></a></li>
+            <li><a href="#portfolio" class="side-dot" data-label="Projects"><span></span></a></li>
+            <li><a href="#hobbies" class="side-dot" data-label="Beyond Work"><span></span></a></li>
+            <li><a href="#contact" class="side-dot" data-label="Contact"><span></span></a></li>
+        </ul>
+    </aside>
 
     <!-- Hero Section -->
     <section class="hero" id="home">
@@ -179,7 +197,7 @@
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
                                 <span class="info-label">Location</span>
-                                <span class="info-value">Boston, MA</span>
+                                <span class="info-value">Tempe, AZ</span>
                             </div>
                         </div>
                         <div class="info-item">
@@ -637,6 +655,48 @@ Portfolio Section -->
             </div>
         </div>
     </section>
+
+    <!-- Beyond Work (Paintings) Section -->
+    <section class="section hobbies" id="hobbies">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag">Beyond work</span>
+                <h2 class="section-title">A Little <span class="gradient-text">Off the Clock</span></h2>
+                <div class="section-line"></div>
+                <p class="hobbies-intro">When I'm not working with data, I paint. Here are a few acrylic pieces
+                    I've made &mdash; a creative outlet that keeps my eye for detail sharp.</p>
+            </div>
+            <div class="gallery-grid">
+                <figure class="gallery-item" data-aos="fade-up" data-aos-delay="100">
+                    <img src="assets/img/hobbies/painting-florals.jpg" alt="Acrylic painting of blue and white wildflowers in a glass vase" loading="lazy">
+                    <figcaption>
+                        <span class="gallery-title">Wildflowers in Glass</span>
+                        <span class="gallery-medium">Acrylic on canvas</span>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-item" data-aos="fade-up" data-aos-delay="200">
+                    <img src="assets/img/hobbies/painting-moon.jpg" alt="Acrylic painting of an orange moon rising over a lake at dusk" loading="lazy">
+                    <figcaption>
+                        <span class="gallery-title">Moonrise Over Water</span>
+                        <span class="gallery-medium">Acrylic on canvas</span>
+                    </figcaption>
+                </figure>
+                <figure class="gallery-item" data-aos="fade-up" data-aos-delay="300">
+                    <img src="assets/img/hobbies/painting-butterfly.jpg" alt="Acrylic painting of an orange butterfly resting on a pale flower" loading="lazy">
+                    <figcaption>
+                        <span class="gallery-title">Butterfly &amp; Bloom</span>
+                        <span class="gallery-medium">Acrylic on canvas</span>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox for gallery -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Close">&times;</button>
+        <img src="" alt="" id="lightbox-img">
+    </div>
 
     <!-- How I Work Section -->
     <section class="section process" id="process">

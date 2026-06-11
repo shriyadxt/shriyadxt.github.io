@@ -1,0 +1,140 @@
+%-------------------------
+% Resume in LaTeX
+% Author: Shriya Dikshith
+%-------------------------
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[top=0.35in,bottom=0.35in,left=0.5in,right=0.5in]{geometry}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{tabularx}
+
+% Colors
+\definecolor{linkblue}{RGB}{0,0,139}
+\definecolor{headblue}{RGB}{47,84,150}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkblue,
+    urlcolor=linkblue,
+    pdfauthor={Shriya Dikshith},
+    pdftitle={Shriya Dikshith - Resume}
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Section heading: blue bold title + full-width rule underneath
+\newcommand{\resumesection}[1]{%
+  \vspace{2pt}%
+  {\large\bfseries\color{headblue}#1}\par%
+  \vspace{1pt}%
+  \noindent\rule{\textwidth}{0.6pt}\par%
+  \vspace{1pt}%
+}
+
+% Job heading: bold company + italic role on left, bold dates right-aligned
+\newcommand{\jobheading}[3]{%
+  \textbf{#1}, \textit{#2}\hfill\textbf{#3}\par\vspace{1pt}%
+}
+
+% Project heading
+\newcommand{\projheading}[2]{%
+  \textbf{#1} $|$ \textit{#2}\par\vspace{1pt}%
+}
+
+% Tighter list spacing
+\setlist{nosep}
+
+% Bullet list
+\newenvironment{bullets}{%
+  \begin{itemize}[leftmargin=0.2in,label=$\bullet$,topsep=1pt,itemsep=1pt,parsep=0pt]%
+}{%
+  \end{itemize}\vspace{1pt}%
+}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\LARGE\bfseries\color{headblue} Shriya Dikshith}\\[2pt]
+    \href{https://www.linkedin.com/in/shriya-dikshith/}{LinkedIn} $|$
+    \href{https://shriyadxt.github.io/}{Portfolio} $|$
+    Tempe, AZ $|$
+    (617) 390-4991 $|$
+    \href{mailto:shriya5dxt@gmail.com}{shriya5dxt@gmail.com}
+\end{center}
+
+%-----------TECHNICAL SKILLS-----------
+\resumesection{Technical Skills}
+\begin{tabularx}{\textwidth}{@{}>{\bfseries}l @{\hspace{6pt}} X@{}}
+Programming Languages & Python, SQL, R, Java, HTML5, CSS, JavaScript, MATLAB, ETL/ELT \\
+Databases             & MS SQL, Vertica, Snowflake, Oracle, MongoDB, NoSQL, BigQuery, PostgreSQL, GCP \\
+Libraries \& Packages & Keras, TensorFlow, PyTorch, Flask, PPTx, NumPy, Scikit-learn, Lambda functions, PySpark \\
+Visualizations        & Tableau, Power BI, Excel, Informatica, Alteryx, Looker, ggplot, Plotly \\
+Other                 & Git, dbt, Dimensional Data Modeling, BI Tools, DAX, OLAP, Data Governance, Agile, SQL Server, AWS, Databricks, VBA, LLMs, Google Cloud, Azure Databricks \\
+\end{tabularx}
+
+%-----------EXPERIENCE-----------
+\resumesection{Work Experience}
+
+\jobheading{Amazon, Tempe, USA}{Business Analyst}{Jul. 2024 -- Present}
+\begin{bullets}
+\item Built \textbf{COACH}, an automated carrier performance-management system evaluating 6,400+ carriers in the U.S. prepaid network against business thresholds, replacing a manual review process that covered only 3.9\% of carriers weekly
+\item Developed \textbf{executive reporting automation} (FIST flash reports and carrier FPY analytics) in Python and SQL, generating weekly HTML dashboards for leadership and cutting manual reporting effort by \textasciitilde6 hours per week
+\item Engineered a serverless \textbf{manifest accuracy analytics pipeline} on AWS Lambda, Python, and Redshift, computing shipment-level metrics and publishing interactive dashboards that replaced recurring ad-hoc analysis
+\item Built a full-stack \textbf{Electron/React desktop application} integrating Python scripts for XML-to-Excel conversion, ISA data extraction, and automated email generation, streamlining carrier operations
+\item Automated carrier compliance verification with USDOT/SCAC validation scripts (cutting onboarding checks from 3 days to minutes) and authored 30+ production SQL queries for Weekly Business Review metrics (FPY, NCNS, OTA, White Glove) across U.S. and Canada
+\end{bullets}
+
+\jobheading{Mimecast, Lexington, MA, USA}{Data Engineer}{Jan. 2023 -- Aug. 2023}
+\begin{bullets}
+\item Developed and optimized dbt models with engineers and product owners, ingesting into Snowflake and reducing ELT runtime from 12 hours to under 20 minutes
+\item \textbf{Enhanced data quality and governance} by leading the migration of Tableau workbooks and flows from Tableau Server to Tableau Cloud, achieving a 40\% reduction in migration time
+\item Conducted data analyses and presented KPIs to stakeholders, identifying 10 high-impact workbooks
+\end{bullets}
+
+\jobheading{Northeastern University, Boston, USA}{Data Engineer}{Aug. 2022 -- Jan. 2023}
+\begin{bullets}
+\item Automated Snowflake ETL/ELT using Alteryx Designer, dbt, and Informatica Cloud, achieving an 80\% efficiency increase
+\item Created a real-time Tableau dashboard enabling finance teams to find cost-saving opportunities, cutting expenses by 15\% and saving 20+ man-hours weekly
+\end{bullets}
+
+\jobheading{HP Inc., Bangalore, India}{Data Engineer (Customer Experience)}{Jan. 2020 -- Jan. 2022}
+\begin{bullets}
+\item Engineered a custom BERT model (NLP/LLMs) for hierarchical issue detection across 30M customer requests in 50+ languages, plus PyTorch sentiment analysis
+\item Directed a CX team building a \textbf{Python pipeline} and Tableau dashboard for HP's global printers, cutting resolution time by 20\%, saving \$1.5M annually, and reducing Databricks GPU cluster costs by \$10,000/month
+\item Pioneered a Python \textbf{ETL pipeline} in \textbf{Azure Databricks}, achieving 90\% automation for weekly large data loads
+\item Delivered end-to-end analytics from problem statement to deployment with a \textbf{Tableau dashboard}, cutting customer support issues by 25\% in the Weak Signals project
+\end{bullets}
+
+%-----------ACADEMIC PROJECTS-----------
+\resumesection{Academic Projects}
+
+\projheading{Customer Complaint Management Database System}{SQL, Tableau, Schema Design, Oracle -- PL/SQL}
+\begin{bullets}
+\item Designed an Oracle complaints database with ER diagrams, normalized schema, and ACID transactions to track and resolve product, account, and service issues
+\end{bullets}
+
+\projheading{Building a Robust API}{JSON, Elasticsearch, Redis, Spring Boot, Postman, MongoDB, VSCode}
+\begin{bullets}
+\item Implemented a REST API for structured JSON data with CRUD, merge, and delete functionality, plus validation and a detailed schema
+\end{bullets}
+
+\projheading{Amazon Product Review Text Mining}{Python, NLP, Pandas, Machine Learning Algorithms, NumPy}
+\begin{bullets}
+\item Employed Python-based verbatim analysis with the PyATE framework to identify common electronic product issues
+\end{bullets}
+
+%-----------EDUCATION-----------
+\resumesection{Education}
+\textbf{Northeastern University}, \textit{Master's in Information Systems}, Boston, USA\\
+Coursework: Database Design, UI/UX, Web Design, Data Science Engineering Methods, Data Structures
+
+\end{document}
